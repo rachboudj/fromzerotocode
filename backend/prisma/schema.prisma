@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id_course   Int       @id @default(autoincrement()) @unique
+  title        String    @db.VarChar(250)
+  thumbnail    String?         // nullable field
+  url          String    @db.VarChar(250)
+  duration     String
+  date         DateTime
+  id_category  Int
+  category     Category   @relation(fields: [id_category], references: [id_category])
+  userCourses  UserCourse[]
+}
+
+model User {
+  id_user          Int               @id @default(autoincrement()) @unique
+  name             String            @db.VarChar(250)
+  surname          String            @db.VarChar(250)
+  password         String            @db.VarChar(250)
+  email            String            @db.VarChar(250) @unique
+  phone            String
+  last_connexion   DateTime?         // nullable field
+  anciennete       String
+  roles            UserRole[]
+  userCourses      UserCourse[]
+}
+
+model Role {
+  id_role    Int      @id @default(autoincrement()) @unique
+  name       String   @unique
+  users      UserRole[]
+}
+
+model UserRole {
+  id_user   Int
+  id_role   Int
+  user      User   @relation(fields: [id_user], references: [id_user])
+  role      Role   @relation(fields: [id_role], references: [id_role])
+
+  @@unique([id_user, id_role])
+}
+
+model Category {
+  id_category   Int       @id @default(autoincrement()) @unique
+  title         String    @db.VarChar(250)
+  description   String?   // nullable field
+  statut        String
+  courses       Course[]
+}
+
+model UserCourse {
+  id_user       Int
+  id_course     Int
+  status        String
+  progress      Int         // Percentage of completion
+  user          User        @relation(fields: [id_user], references: [id_user])
+  course        Course      @relation(fields: [id_course], references: [id_course])
+
+  @@unique([id_user, id_course])
+}
