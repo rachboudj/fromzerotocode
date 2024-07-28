@@ -26,7 +26,6 @@ app.post('/login', registerLoginController.login);
 // Utilisateur
 app.get('/api/users', userController.getUsers);
 app.get('/api/users/:id', userController.getUserById);
-// app.get('/admin/users/:id/edit', userController.editUser);
 app.put('/api/users/:id/edit', userController.updateUser);
 app.get('/api/userRole', userController.getUserRole);
 app.post('/api/users/:userId/roles/:roleId', userController.addRoleToUser);
