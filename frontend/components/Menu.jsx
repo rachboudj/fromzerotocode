@@ -6,7 +6,6 @@ import logo from "../assets/img/logo-mobile.png";
 
 export default function Menu() {
     const location = useLocation();
-    const isLoginOrRegisterPage = location.pathname === '/login' || location.pathname === '/register';
     const navigate = useNavigate();
     const submenuRef = useRef(null);
     const [submenuVisible, setSubmenuVisible] = useState(false);
@@ -19,10 +18,6 @@ export default function Menu() {
         localStorage.removeItem("accessToken");
         navigate('/login');
     };
-
-    if (isLoginOrRegisterPage) {
-        return null;
-    }
 
     return (
         <nav className='bg-beige-clair'>
