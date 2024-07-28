@@ -31,9 +31,7 @@ model User {
   surname          String            @db.VarChar(250)
   password         String            @db.VarChar(250)
   email            String            @db.VarChar(250) @unique
-  phone            String
   last_connexion   DateTime?         // nullable field
-  anciennete       String
   roles            UserRole[]
   userCourses      UserCourse[]
 }
