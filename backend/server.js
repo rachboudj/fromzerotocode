@@ -4,6 +4,8 @@ import cors from "cors";
 import { PrismaClient } from '@prisma/client';
 import upload from "./config/multer.js";
 
+import * as registerLoginController from './controllers/registerLoginController.js';
+import * as userController from './controllers/userController.js';
 import * as courseController from './controllers/courseController.js';
 import * as tutorialController from './controllers/tutorialController.js';
 import * as categoryController from './controllers/categoryController.js';
@@ -16,6 +18,19 @@ const app = express();
 app.use(express.json())
 app.use(cors())
 app.use('/uploads', express.static('uploads'));
+
+// Connexion + inscription
+app.post('/register', registerLoginController.register);
+app.post('/login', registerLoginController.login);
+
+// Utilisateur
+app.get('/api/users', userController.getUsers);
+app.get('/api/users/:id', userController.getUserById);
+// app.get('/admin/users/:id/edit', userController.editUser);
+app.put('/api/users/:id/edit', userController.updateUser);
+app.get('/api/userRole', userController.getUserRole);
+app.post('/api/users/:userId/roles/:roleId', userController.addRoleToUser);
+app.delete('/api/users/:userId/roles/:roleId', userController.deleteRoleFromUser);
 
 // Cours
 app.get('/api/courses', courseController.getCourses);
