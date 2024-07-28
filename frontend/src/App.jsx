@@ -23,6 +23,10 @@ import EditCourses from './pages/Admin/Course/EditCourse';
 import Tutorial from './pages/Admin/Tutorial/Tutorial';
 import CreateTutorial from './pages/Admin/Tutorial/CreateTutorial';
 import EditTutorial from './pages/Admin/Tutorial/EditTutorial';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import User from './pages/Admin/User/User';
+import EditUserPage from './pages/Admin/User/EditUser';
 
 function App() {
 
@@ -41,8 +45,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             {/* User */}
-            {/* <Route path="/user-admin" element={<UserAdmin />} />
-            <Route path="/admin/users/:id/edit" element={<EditUserPage />} /> */}
+            <Route path="/admin/user" element={<User />} />
+            <Route path="/admin/users/:id/edit" element={<EditUserPage />} />
             {/* Cours Admin */}
             <Route path="/admin/courses" element={<Course />} />
             <Route path="/admin/courses/new" element={<CreateCourses />} />
@@ -60,8 +64,8 @@ function App() {
             <Route path="/admin/roles/new" element={<CreateRole />} />
             <Route path="/admin/roles/:id/edit" element={<EditRole />} />
             {/* Login et connexion */}
-            {/* <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} /> */}
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </Router>
