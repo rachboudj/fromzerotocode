@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode';
+import AdminRoute from '../../../components/AdminComponent';
+import PrivateRoute from '../../../components/PrivateComponent';
 
 export default function User() {
     const [users, setUsers] = useState([]);
@@ -58,6 +60,8 @@ export default function User() {
     };
 
     return (
+        <PrivateRoute>
+            <AdminRoute>
                 <div className='p-6'>
 
                     <div className='bg-white p-6 rounded-lg relative overflow-x-auto mt-2'>
@@ -130,5 +134,7 @@ export default function User() {
                         </div>
                     </div>
                 </div>
+            </AdminRoute>
+        </PrivateRoute>
     )
 }

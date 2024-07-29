@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import AdminRoute from '../../../components/AdminComponent';
+import PrivateRoute from '../../../components/PrivateComponent';
 
 export default function Categorie() {
     const [categorys, setCategorys] = useState([])
@@ -30,6 +32,8 @@ export default function Categorie() {
     }
 
     return (
+        <PrivateRoute>
+            <AdminRoute>
                 <div className='p-6'>
                     <div className='bg-white p-6 rounded-lg relative overflow-x-auto mt-2'>
                         <div className='flex justify-between items-center'>
@@ -62,5 +66,7 @@ export default function Categorie() {
                         </div>
                     </div>
                 </div>
+            </AdminRoute>
+        </PrivateRoute>
     )
 }

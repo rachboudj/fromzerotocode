@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { IconArrowNarrowLeft } from '@tabler/icons-react';
 import { toast } from 'react-toastify';
+import AdminRoute from '../../../components/AdminComponent';
+import PrivateRoute from '../../../components/PrivateComponent';
 
 export default function EditCourses() {
     const [course, setCourse] = useState();
@@ -84,6 +86,8 @@ export default function EditCourses() {
     };
 
     return (
+        <PrivateRoute>
+            <AdminRoute>
                 <div className='mt-8 max-w-md mx-auto'>
                     <button onClick={retour} className='bg-black rounded-md p-2 cursor-pointer mb-4'>
                         <IconArrowNarrowLeft stroke={2} color={"#fff"} />
@@ -118,5 +122,7 @@ export default function EditCourses() {
                         </div>
                     )}
                 </div>
+            </AdminRoute>
+        </PrivateRoute>
     )
 }
