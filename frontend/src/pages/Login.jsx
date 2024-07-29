@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
-import api from "../../assets/api";
-// import imgAuth from "../assets/img/tefilin-siddour.png";
+import api from "../assets/api";
 
 
 export default function Login() {
