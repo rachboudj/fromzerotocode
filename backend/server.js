@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { PrismaClient } from '@prisma/client';
 import upload from "./config/multer.js";
+import authenticateToken from './utils/authMiddleware.js';
+
 
 import * as registerLoginController from './controllers/registerLoginController.js';
 import * as userController from './controllers/userController.js';
@@ -30,17 +32,25 @@ app.put('/api/users/:id/edit', userController.updateUser);
 app.get('/api/userRole', userController.getUserRole);
 app.post('/api/users/:userId/roles/:roleId', userController.addRoleToUser);
 app.delete('/api/users/:userId/roles/:roleId', userController.deleteRoleFromUser);
+app.delete('/api/users/:userId', authenticateToken, userController.deleteUser);
 
 // Cours
 app.get('/api/courses', courseController.getCourses);
 app.get('/api/courses/:id', courseController.getCoursesById);
+app.get('/api/user-courses', authenticateToken, courseController.getUserCourses);
+app.get('/api/user-courses/:courseId/progress', authenticateToken, courseController.getCourseStatus);
+app.get('/api/courses/:courseId/tutorials', courseController.getCourseByIdAndTutorials);
 app.post('/api/courses/new', upload.single('thumbnail'), courseController.createCourse);
 app.put('/api/courses/:id/edit', upload.single('thumbnail'), courseController.updateCourse);
+app.put('/api/user-courses/:id/progress/:progress', authenticateToken, courseController.updateProgressCourse);
+app.put('/api/user-courses/:id/finish', authenticateToken, courseController.finishCourse);
+app.post('/api/user-courses/:id/start', authenticateToken, courseController.updateCourseInProgress);
 app.delete('/api/courses/:id', courseController.deleteCourse);
 
 // Tutorial
 app.get('/api/tutorials', tutorialController.getTutorial);
 app.get('/api/tutorials/:id', tutorialController.getTutorialById);
+app.get('/api/courses/:courseId/tutorials/:tutorialId', tutorialController.getTutorialByCourseAndId);
 app.post('/api/tutorials/new', tutorialController.createTutorial);
 app.put('/api/tutorials/:id/edit', tutorialController.updateTutorial);
 app.delete('/api/tutorials/:id', tutorialController.deleteTutorial);
