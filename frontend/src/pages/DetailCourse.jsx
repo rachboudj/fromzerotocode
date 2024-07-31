@@ -49,7 +49,7 @@ export default function DetailCourse() {
                 await api.post(`${import.meta.env.VITE_API_URL}/api/user-courses/${id}/start`);
                 navigate(`/courses/${id}/tutorials/${firstTutorialId}`);
             } catch (error) {
-                console.error('Error starting the course:', error);
+                // console.error('Error starting the course:', error);
             }
         }
     };
@@ -63,7 +63,7 @@ export default function DetailCourse() {
             try {
                 navigate(`/courses/${id}/tutorials/${tutorialId}`);
             } catch (error) {
-                console.error('Error resuming the course:', error);
+                // console.error('Error resuming the course:', error);
             }
         }
     };

@@ -26,7 +26,7 @@ export default function DetailTutorial() {
 
                 setLoading(false);
             } catch (error) {
-                console.error('Error fetching tutorial:', error);
+                // console.error('Error fetching tutorial:', error);
                 setLoading(false);
             }
         };
@@ -57,7 +57,7 @@ export default function DetailTutorial() {
                 }
             }
         } else {
-            console.log('This is the last tutorial.');
+            // console.log('This is the last tutorial.');
         }
     };
 
@@ -67,7 +67,7 @@ export default function DetailTutorial() {
             const previousTutorialId = tutorials[currentIndex - 1].id_tutorial;
             navigate(`/courses/${courseId}/tutorials/${previousTutorialId}`);
         } else {
-            console.log('This is the first tutorial.');
+            // console.log('This is the first tutorial.');
         }
     };
 
@@ -76,7 +76,7 @@ export default function DetailTutorial() {
             await api.put(`${import.meta.env.VITE_API_URL}/api/user-courses/${courseId}/finish`);
             navigate(`/detail-course/${courseId}`);
         } catch (error) {
-            console.error('Erreur lors de la mise à jour du statut du cours :', error);
+            // console.error('Erreur lors de la mise à jour du statut du cours :', error);
         }
     };
 
