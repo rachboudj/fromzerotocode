@@ -32,6 +32,9 @@ import DetailTutorial from './pages/DetailTutorial';
 import UserProfil from './pages/UserProfil';
 import CourseUser from './pages/Course';
 import Apropos from './pages/Apropos';
+import MentionsLegales from './pages/MentionsLegales';
+import ConditionsGenerales from './pages/ConditionsGenerales';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -46,7 +49,7 @@ function App() {
           bodyClassName={() => "poppins-medium flex text-gray-700 text-sm font-white font-med block p-3"}
         />
         <Menu />
-        <div className='content overflow-hidden w-full h-screen overflow-y-scroll'>
+        <div className='content overflow-hidden w-full'>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/detail-course/:id" element={<DetailCourse />} />
@@ -54,6 +57,8 @@ function App() {
             <Route path="/les-tutos" element={<CourseUser />} />
             <Route path="/profil" element={<UserProfil />} />
             <Route path="/a-propos" element={<Apropos />} />
+            <Route path="/mentions-legales" element={<MentionsLegales />} />
+            <Route path="/conditions-generales" element={<ConditionsGenerales />} />
             {/* User */}
             <Route path="/admin/user" element={<User />} />
             <Route path="/admin/users/:id/edit" element={<EditUserPage />} />
@@ -78,6 +83,7 @@ function App() {
             <Route path="/login" element={<Login />} />
           </Routes>
         </div>
+        <Footer />
       </Router>
     </>
   )

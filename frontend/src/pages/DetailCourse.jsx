@@ -18,8 +18,8 @@ export default function DetailCourse() {
 
                 const progressResponse = await api.get(`${import.meta.env.VITE_API_URL}/api/user-courses/${id}/progress`);
                 if (progressResponse.data.status) {
-                setStatus(progressResponse.data.status);
-                setUserHasCourse(true);
+                    setStatus(progressResponse.data.status);
+                    setUserHasCourse(true);
                 }
 
                 setLoading(false);
@@ -69,28 +69,74 @@ export default function DetailCourse() {
     };
 
     return (
-        <div>
-            <h1>Détail du cours: {course.title}</h1>
-            <p>Description: {course.description}</p>
-            {userHasCourse ? (
-                status === 'finished' ? (
-                    <button onClick={handleResume}>Ce cours est terminé</button>
-                ) : status === 'In Progress' ? (
-                    <button onClick={handleResume}>Reprendre</button>
+        <div className='p-10'>
+            <div className='mt-10 border-2 border-black bg-white p-10'>
+                <h1 className='font-heading font-bold text-2xl'>{course.title}</h1>
+                <p>{course.description}</p>
+                {userHasCourse ? (
+                    status === 'finished' ? (
+                        <button
+                            className='mt-5 border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+                            onClick={handleResume}
+                        >Ce cours est terminé</button>
+                    ) : status === 'In Progress' ? (
+                        <button
+                            className='mt-5 border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+                            onClick={handleResume}
+                        >Reprendre</button>
+                    ) : (
+                        <button
+                            className='mt-5 border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+                            onClick={handleStart}
+                        >Commencer</button>
+                    )
                 ) : (
-                    <button onClick={handleStart}>Commencer</button>
-                )
-            ) : (
-                <button onClick={handleStart}>Commencer</button>
-            )}
+                    <button
+                        className='mt-5 border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+                        onClick={handleStart}
+                    >Commencer</button>
+                )}
+            </div>
+
             <>
-                <ul>
-                    {course.tutorials.map((tutorial) => (
-                        <li key={tutorial.id_tutorial}>
+                <div className='mt-10'>
+                    <div className='border-2 border-black bg-white p-10' >
+                        <h2 className='font-heading font-bold text-xl'>Syllabus</h2>
+                    </div>
+                    {course.tutorials.map((tutorial, index) => (
+                        <div className='flex border-2 border-black bg-white p-10' key={tutorial.id_tutorial}>
+                            <div>
+                                <span className='text-white bg-black rounded-full p-2 mr-6'>{index + 1}</span>
+                            </div>
                             <h3>{tutorial.title}</h3>
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
+                <div className='flex justify-center'>
+                    {userHasCourse ? (
+                        status === 'finished' ? (
+                            <button
+                                className='mt-5 border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+                                onClick={handleResume}
+                            >Ce cours est terminé</button>
+                        ) : status === 'In Progress' ? (
+                            <button
+                                className='mt-5 border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+                                onClick={handleResume}
+                            >Reprendre</button>
+                        ) : (
+                            <button
+                                className='mt-5 border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+                                onClick={handleStart}
+                            >Commencer</button>
+                        )
+                    ) : (
+                        <button
+                            className='mt-5 border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+                            onClick={handleStart}
+                        >Commencer</button>
+                    )}
+                </div>
             </>
         </div>
     );

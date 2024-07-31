@@ -47,7 +47,7 @@ export default function Register() {
                         <input
                             type="text"
                             onChange={e => setValues({ ...values, name: e.target.value })}
-                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                         />
@@ -57,7 +57,7 @@ export default function Register() {
                         <input
                             type="text"
                             onChange={e => setValues({ ...values, surname: e.target.value })}
-                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             aria-describedby="emailHelp"
                         />
                     </div>
@@ -66,7 +66,7 @@ export default function Register() {
                         <input
                             type="email"
                             onChange={e => setValues({ ...values, email: e.target.value })}
-                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                         />
@@ -76,13 +76,15 @@ export default function Register() {
                         <input
                             type="password"
                             onChange={e => setValues({ ...values, password: e.target.value })}
-                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             id="exampleInputPassword1"
                         />
                     </div>
-                    <button type="submit" className="mt-5 text-white bg-cyan-500 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">S'inscrire</button>
+                    <button type="submit" 
+                    className="mt-5 border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                    >S'inscrire</button>
                 </form>
-                <p className='mt-4 text-sm font-medium text-gray-900 dark:text-gray-300'>Vous avez déjà un compte ? <Link className="text-blue-600 hover:underline dark:text-blue-500" to="/login">Se connecter</Link></p>
+                <p className='mt-4 text-sm font-medium text-gray-900 dark:text-gray-300'>Vous avez déjà un compte ? <Link className="text-bleu-elec hover:underline dark:text-blue-500" to="/login">Se connecter</Link></p>
             </div>
         </div>
     )

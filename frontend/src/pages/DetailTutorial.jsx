@@ -94,24 +94,34 @@ export default function DetailTutorial() {
 
     return (
         <PrivateRoute>
-        <div>
-            <h1>{tutorial.title}</h1>
-            <iframe id="ytplayer" type="text/html" width="640" height="360"
-                src={getEmbedUrl(tutorial.content)}
-                frameborder="0" />
-
-            <div>
-                {currentIndex > 0 && (
-                    <button onClick={handlePrevious}>Précédent</button>
-                )}
-                {!isLastTutorial && (
-                    <button onClick={handleNext}>Suivant</button>
-                )}
-                {isLastTutorial && (
-                    <button onClick={handleFinish}>Terminé</button>
-                )}
+            <div className='p-10'>
+                <div className='mt-10 border-2 border-black bg-white p-10'>
+                    <h1 className='font-heading font-bold text-3xl'>{tutorial.title}</h1>
+                    <iframe className='mt-10 w-full h-screen' id="ytplayer" type="text/html"
+                        src={getEmbedUrl(tutorial.content)}
+                        frameborder="0" />
+                </div>
+                <div className='flex justify-center mt-10'>
+                        {currentIndex > 0 && (
+                            <button 
+                            className="mt-5 mr-10 border-2 border-black text-black shadow-black bg-white hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                            onClick={handlePrevious}
+                            >Précédent</button>
+                        )}
+                        {!isLastTutorial && (
+                            <button 
+                            className="mt-5 border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                            onClick={handleNext}
+                            >Suivant</button>
+                        )}
+                        {isLastTutorial && (
+                            <button 
+                            className="mt-5 border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                            onClick={handleFinish}
+                            >Terminé</button>
+                        )}
+                    </div>
             </div>
-        </div>
         </PrivateRoute>
     );
 }

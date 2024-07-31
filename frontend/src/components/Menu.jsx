@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
+import account from "../assets/img/account.png";
 
 
 import logo from "../assets/img/logo-mobile.png";
@@ -39,25 +40,25 @@ export default function Menu() {
     };
 
     return (
-        <nav className='bg-beige-clair'>
+        <nav className='border-b-2 border-black'>
             <div className='flex justify-between mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-16'>
                 <div className='flex items-center'>
                     <img className="h-6 w-auto" src={logo} alt="Logo From Zero To Code" />
-                    <span className='font-medium ml-3'>From Zero To Code</span>
+                    <span className='font-extrabold ml-3 phone:hidden'>From Zero To Code</span>
                 </div>
 
-                <div className='flex items-center'>
-                    <ul className='flex items-center '>
-                        <li><a href="/" className="" role="menuitem">Accueil</a></li>
-                        <li><a href="/a-propos" className="" role="menuitem">À propos</a></li>
-                        <li><a href="/les-tutos" className="" role="menuitem">Les tutos</a></li>
+                <div className='flex items-center w-2/4'>
+                    <ul className='flex justify-evenly items-center w-4/4'>
+                        <li><a href="/" className="mr-8" role="menuitem">Accueil</a></li>
+                        <li><a href="/a-propos" className="mr-8" role="menuitem">À propos</a></li>
+                        <li><a href="/les-tutos" className="mr-8" role="menuitem">Les tutos</a></li>
                     </ul>
                 </div>
 
                 <div className="flex space-x-4 items-center">
                     {isLoggedIn ? (
                         <div className='relative'>
-                            <button onClick={handleMouseEnter}><img className="w-8 h-8 rounded-full shadow-lg" src={logo} alt="Bonnie image" /></button>
+                            <button onClick={handleMouseEnter}><img className="w-8 h-8 rounded-full shadow-lg" src={account} alt="Bonnie image" /></button>
                             <div
                                 ref={submenuRef}
                                 className={`${submenuVisible ? '' : 'hidden'} absolute submenu right-1 z-10 mt-2 w-48 origin-top-right rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5`}>
@@ -84,9 +85,9 @@ export default function Menu() {
                             </div>
                         </div>
                     ) : (
-                        <div>
-                            <button className="px-4 py-2 text-sm text-blue-500 hover:text-blue-700" onClick={() => navigate('/login')}>Se connecter</button>
-                            <button className="px-4 py-2 text-sm text-blue-500 hover:text-blue-700" onClick={() => navigate('/register')}>S'inscrire</button>
+                        <div className=''>
+                            <button className="mr-1 text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-xs w-full sm:w-auto px-5 py-2.5 text-center" onClick={() => navigate('/login')}>Se connecter</button>
+                            <button className="border-2 border-black text-white shadow-black bg-bleu-elec hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-xs w-full sm:w-auto px-5 py-2.5 text-center" onClick={() => navigate('/register')}>S'inscrire</button>
                         </div>
                     )}
                 </div>
