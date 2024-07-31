@@ -16,12 +16,12 @@ datasource db {
 model Course {
   id_course   Int       @id @default(autoincrement()) @unique
   title        String    @db.VarChar(250)
+  description  String    
   thumbnail    String?         // nullable field
-  url          String    @db.VarChar(250)
-  duration     String
   date         DateTime
   id_category  Int
   category     Category   @relation(fields: [id_category], references: [id_category])
+  tutorials     Tutorial[]
   userCourses  UserCourse[]
 }
 
@@ -31,9 +31,7 @@ model User {
   surname          String            @db.VarChar(250)
   password         String            @db.VarChar(250)
   email            String            @db.VarChar(250) @unique
-  phone            String
   last_connexion   DateTime?         // nullable field
-  anciennete       String
   roles            UserRole[]
   userCourses      UserCourse[]
 }
@@ -61,11 +59,19 @@ model Category {
   courses       Course[]
 }
 
+model Tutorial {
+  id_tutorial   Int         @id @default(autoincrement()) @unique
+  title         String      @db.VarChar(250)
+  content       String
+  id_course     Int
+  course        Course      @relation(fields: [id_course], references: [id_course])
+}
+
 model UserCourse {
   id_user       Int
   id_course     Int
   status        String
-  progress      Int         // Percentage of completion
+  progress      Int         
   user          User        @relation(fields: [id_user], references: [id_user])
   course        Course      @relation(fields: [id_course], references: [id_course])
 
