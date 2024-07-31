@@ -16,6 +16,7 @@ export default function Login() {
             if(res.data.Status === "Success") {
                 localStorage.setItem("accessToken", res.data.accessToken);
                 navigate('/')
+                window.location.reload();
             } else {
                 alert("Error");
             }
