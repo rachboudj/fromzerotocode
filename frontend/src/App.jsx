@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 
 
 // Composant
-import Menu from '../components/Menu';
+import Menu from './components/Menu';
 
 // Page
 import Home from './pages/Home'
@@ -27,23 +27,33 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import User from './pages/Admin/User/User';
 import EditUserPage from './pages/Admin/User/EditUser';
+import DetailCourse from './pages/DetailCourse';
+import DetailTutorial from './pages/DetailTutorial';
+import UserProfil from './pages/UserProfil';
+import CourseUser from './pages/Course';
+import Apropos from './pages/Apropos';
 
 function App() {
 
   return (
     <>
       <Router>
-        <ToastContainer 
-        oastClassName={(context) =>
-          contextClass[context?.type || "default"] +
-          "relative flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer"
-        }
-        bodyClassName={() => "poppins-medium flex text-gray-700 text-sm font-white font-med block p-3"}
+        <ToastContainer
+          oastClassName={(context) =>
+            contextClass[context?.type || "default"] +
+            "relative flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer"
+          }
+          bodyClassName={() => "poppins-medium flex text-gray-700 text-sm font-white font-med block p-3"}
         />
         <Menu />
         <div className='content overflow-hidden w-full h-screen overflow-y-scroll'>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/detail-course/:id" element={<DetailCourse />} />
+            <Route path="/courses/:courseId/tutorials/:tutorialId" element={<DetailTutorial />} />
+            <Route path="/les-tutos" element={<CourseUser />} />
+            <Route path="/profil" element={<UserProfil />} />
+            <Route path="/a-propos" element={<Apropos />} />
             {/* User */}
             <Route path="/admin/user" element={<User />} />
             <Route path="/admin/users/:id/edit" element={<EditUserPage />} />
