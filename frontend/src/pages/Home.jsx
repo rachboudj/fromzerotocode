@@ -9,7 +9,9 @@ export default function Home() {
     const fetchCourses = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/courses`);
-        setCourses(response.data);
+        const sortedCourses = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        const latestCourses = sortedCourses.slice(0, 3);
+        setCourses(latestCourses);
       } catch (error) {
         console.error('Error fetching courses:', error);
       }
