@@ -30,6 +30,28 @@ export const getTutorialById = async (req, res) => {
     }
 }
 
+export const getTutorialByCourseAndId = async (req, res) => {
+    const { courseId, tutorialId } = req.params;
+
+    try {
+        const tutorial = await prisma.tutorial.findFirst({
+            where: {
+                id_tutorial: parseInt(tutorialId),
+                id_course: parseInt(courseId),
+            },
+        });
+
+        if (!tutorial) {
+            return res.status(404).json({ message: 'Tutorial not found' });
+        }
+
+        res.json(tutorial);
+    } catch (error) {
+        console.error('Error fetching tutorial:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
 export const createTutorial = async (req, res) => {
     try {
         const course = parseInt(req.body.course);
