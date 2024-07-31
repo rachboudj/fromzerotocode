@@ -14,12 +14,13 @@ export default function AdminRoute({children}) {
   }, []);
 
   const isAdmin = userRoles.includes('Admin');
+  const isSuperAdmin = userRoles.includes('SuperAdmin');
 
   if (userRoles.length === 0) {
     return null;
   }
 
-  if (!isAdmin) {
+  if (!isAdmin && !isSuperAdmin) {
     return <Navigate to="/" />;
   }
 

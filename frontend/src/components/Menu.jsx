@@ -25,7 +25,7 @@ export default function Menu() {
         }
     }, []);
 
-    const hasAccess = userRole.includes('Admin');
+    const hasAccess = userRole.includes('Admin') || userRole.includes('SuperAdmin');
     const hasSuperAdminAccess = userRole.includes('SuperAdmin');
 
     const handleMouseEnter = (event) => {
@@ -67,7 +67,7 @@ export default function Menu() {
                                     {hasAccess && (
                                         <>
                                             <span className="block mt-4 uppercase px-4 py-2 font-medium text-xs text-gray-700 hover:bg-gray-100 hover:text-gray-900">Administrateur</span>
-                                            {hasSuperAdminAccess && (
+                                            {userRole.includes('SuperAdmin') && (
                                                 <>
                                             <a href="/admin/user" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Utilisateurs</a>
                                             <a href="/admin/roles" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Rôles</a>
