@@ -127,7 +127,7 @@ export const addRoleToUser = async (req, res) => {
 
         const accessToken = await generateAccessToken(updatedUser);
 
-        res.json({ 
+        res.json({
             message: 'Rôle ajouté avec succès à l\'utilisateur',
             accessToken
         });
@@ -178,12 +178,36 @@ export const deleteRoleFromUser = async (req, res) => {
 
         const accessToken = await generateAccessToken(updatedUser);
 
-        res.json({ 
+        res.json({
             message: 'Rôle supprimé avec succès',
             accessToken
         });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Erreur serveur' });
+    }
+}
+
+export const deleteUser = async (req, res) => {
+    const userId = parseInt(req.params.userId);
+    console.log(userId);
+
+    try {
+        await prisma.userCourse.deleteMany({
+            where: { id_user: userId }
+        });
+
+        await prisma.userRole.deleteMany({
+            where: { id_user: userId }
+        });
+
+        await prisma.user.delete({
+            where: { id_user: userId }
+        });
+
+        res.status(200).json({ message: 'User deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        res.status(500).json({ error: 'Failed to delete user' });
     }
 }
