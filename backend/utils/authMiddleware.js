@@ -13,7 +13,6 @@ const authenticateToken = (req, res, next) => {
             return res.sendStatus(403);
         }
         req.user = payload;
-        console.log(req.user);
         next();
     });
 };
