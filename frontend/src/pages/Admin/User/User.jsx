@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode';
 import AdminRoute from '../../../components/AdminComponent';
 import PrivateRoute from '../../../components/PrivateComponent';
+import { toast } from 'react-toastify';
 
 export default function User() {
     const [users, setUsers] = useState([]);
@@ -37,25 +38,22 @@ export default function User() {
     const handleAddRole = async () => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/${selectedUserId}/roles/${selectedRoleId}`);
-            alert('Rôle ajouté avec succès');
+            toast.success("Rôle ajouté avec succès ! Rechargez la page pour voir l'ajout");
             const { accessToken } = response.data;
-            console.log(accessToken)
 
             if (accessToken) {
-                console.log("local storaaage")
                 localStorage.setItem('accessToken', accessToken);
                 const updatedUser = jwtDecode(accessToken);
 
                 setUsers(users.map(user =>
                     user.id_user === updatedUser.id_user ? { ...user, roles: updatedUser.roles } : user
                 ));
-                console.log("c'est bon frérot")
             }
             setSelectedUserId('');
             setSelectedRoleId('');
         } catch (error) {
             console.error(error);
-            alert('Erreur lors de l\'ajout du rôle');
+            toast.error('Erreur lors de l\'ajout du rôle... Veuillez réessayer.');
         }
     };
 

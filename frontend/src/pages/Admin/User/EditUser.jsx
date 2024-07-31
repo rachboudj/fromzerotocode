@@ -6,6 +6,7 @@ import { IconArrowNarrowLeft } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import AdminRoute from '../../../components/AdminComponent';
 import PrivateRoute from '../../../components/PrivateComponent';
+import { toast } from 'react-toastify';
 
 function EditUserPage() {
     const [user, setUser] = useState(null);
@@ -81,18 +82,15 @@ function EditUserPage() {
             }
             const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/users/${user.id_user}/roles/${roleId}`);
             const { accessToken } = response.data;
-            console.log("c'est supprimé")
-            console.log(accessToken)
+            toast.success("Rôle supprimé avec succès ! Rechargez la page pour voir l'ajout");
 
             if (accessToken) {
-                console.log("local storaaage suppr")
                 localStorage.setItem('accessToken', accessToken);
                 const updatedUser = jwtDecode(accessToken);
 
                 setUsers(user.map(user =>
                     user.id_user === updatedUser.id_user ? { ...user, roles: updatedUser.roles } : user
                 ));
-                console.log("jeton actualisé")
             }
 
             setRoles((prevRoles) => prevRoles.filter((role) => role.id_role !== roleId));
@@ -103,6 +101,7 @@ function EditUserPage() {
             }));
 
         } catch (error) {
+            toast.error("Le rôle n'a pas pu être supprimé... Veuillez réessayer.");
             console.error(error);
         }
     };

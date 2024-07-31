@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
 import api from "../assets/api";
+import { toast } from 'react-toastify';
 
 
 export default function Login() {
@@ -9,19 +10,31 @@ export default function Login() {
 
 
     const navigate = useNavigate()
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        api.post(`${import.meta.env.VITE_API_URL}/login`, { email, password })
-        .then(res => {
-            if(res.data.Status === "Success") {
+        try {
+            const res = await api.post(`${import.meta.env.VITE_API_URL}/login`, { email, password })
+            if (res.data.Status === "Success") {
                 localStorage.setItem("accessToken", res.data.accessToken);
                 navigate('/')
                 window.location.reload();
             } else {
-                alert("Error");
+                toast.error(res.data.Message || "Erreur de connexion");
             }
-        })
-        .then(err => console.log(err));
+        } catch (err) {
+            if (err.response) {
+                if (err.response.status === 404) {
+                    toast.error("L'utilisateur n'existe pas");
+                } else if (err.response.status === 401) {
+                    toast.error("Mot de passe incorrect");
+                } else {
+                    toast.error("Erreur de connexion");
+                }
+            } else {
+                console.error(err);
+                toast.error("Erreur de connexion");
+            }
+        }
     }
 
     return (

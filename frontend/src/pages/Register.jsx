@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
-// import imgAuth from "../assets/img/tefilin-siddour.png";
+import { toast } from 'react-toastify';
 
 export default function Register() {
     const [values, setValues] = useState({
@@ -23,7 +23,15 @@ export default function Register() {
                     alert("Error");
                 }
             })
-            .then(err => console.log(err));
+            .catch(err => 
+                {
+                    if (err.response && err.response.status === 400) {
+                        toast.error("Cette adresse mail existe déjà... Veuillez en rentrer une autre");
+                    } else {
+                        toast.error("Une erreur s'est produite. Veuillez réessayer.");
+                    }
+                }
+            );
     }
 
 
