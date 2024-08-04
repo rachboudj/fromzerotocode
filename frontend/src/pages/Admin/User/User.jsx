@@ -66,8 +66,8 @@ export default function User() {
                         <h1 className='text-3xl font-black'>Utilisateurs</h1>
 
                         <div className="relative overflow-x-auto mt-10">
-                            <table className='w-full overflow-x-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-                                <thead className='text-xs border-b text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400'>
+                            <table className='w-full overflow-x-auto text-sm text-left rtl:text-right text-gray-500'>
+                                <thead className='text-xs border-b text-gray-700 uppercase'>
                                     <tr>
                                         <th scope="col" className="px-6 py-3">Nom</th>
                                         <th scope="col" className="px-6 py-3">Prénom</th>
@@ -78,13 +78,13 @@ export default function User() {
                                 </thead>
                                 <tbody>
                                     {users.map(user => (
-                                        <tr className='bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' key={user.id_user}>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.name}</th>
+                                        <tr className='bg-white hover:bg-gray-50' key={user.id_user}>
+                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{user.name}</th>
                                             <td className="px-6 py-4">{user.surname}</td>
                                             <td className="px-6 py-4">{user.email}</td>
                                             <td className="px-6 py-4">{user.roles.map(userRole => userRole.role.name).join(', ')}</td>
                                             <td>
-                                                <Link className='font-medium text-cyan-500 dark:text-blue-500 hover:underline mr-2' to={`/admin/users/${user.id_user}/edit`}>Modifier</Link>
+                                                <Link className='font-medium text-cyan-500 hover:underline mr-2' to={`/admin/users/${user.id_user}/edit`}>Modifier</Link>
                                             </td>
                                         </tr>
                                     ))}
@@ -98,7 +98,7 @@ export default function User() {
                     <div className="mt-4">
                         <h2 className="text-xl font-black">Ajouter un rôle</h2>
                         <div className='relative z-0 w-full mt-10 group'>
-                            <label className='peer-focus:font-medium text-xs text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6' htmlFor="user">Utilisateur</label>
+                            <label className='peer-focus:font-medium text-xs text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6' htmlFor="user">Utilisateur</label>
                             <select
                                 value={selectedUserId}
                                 onChange={(e) => setSelectedUserId(e.target.value)}
@@ -112,11 +112,11 @@ export default function User() {
                         </div>
 
                         <div className='relative z-0 w-full mt-2 group'>
-                            <label className='peer-focus:font-medium text-xs text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6' htmlFor="user">Rôles</label>
+                            <label className='peer-focus:font-medium text-xs text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6' htmlFor="user">Rôles</label>
                             <select
                                 value={selectedRoleId}
                                 onChange={(e) => setSelectedRoleId(e.target.value)}
-                                className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             >
                                 <option value="">-- Sélectionner un rôle --</option>
                                 {roles.map(role => (
@@ -125,7 +125,7 @@ export default function User() {
                             </select>
                             <button
                                 onClick={handleAddRole}
-                                className="mt-5 text-white bg-cyan-500 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                className="mt-5 text-white bg-black hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
                             >
                                 Ajouter
                             </button>

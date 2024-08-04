@@ -40,12 +40,12 @@ export default function Course() {
                     <div className='bg-white p-6 rounded-lg relative overflow-x-auto mt-2'>
                         <div className='flex justify-between items-center'>
                             <h1 className='text-3xl font-black'>Cours</h1>
-                            <a className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700' href="/admin/courses/new">Créer un cours</a>
+                            <a className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2' href="/admin/courses/new">Créer un cours</a>
                         </div>
 
                         <div className="relative overflow-x-auto mt-10">
-                            <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-                                <thead className='text-xs border-b text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400'>
+                            <table className='w-full text-sm text-left rtl:text-right text-gray-500'>
+                                <thead className='text-xs border-b text-gray-700 uppercase'>
                                     <tr>
                                         <th scope="col" className="px-6 py-3">Titre</th>
                                         <th scope="col" className="px-6 py-3">Tutoriels</th>
@@ -56,8 +56,8 @@ export default function Course() {
                                 </thead>
                                 <tbody>
                                     {courses.map(course => (
-                                        <tr className='bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' key={course.id_courses}>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{course.title}</th>
+                                        <tr className='bg-white hover:bg-gray-50' key={course.id_courses}>
+                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{course.title}</th>
                                             <td className="px-6 py-4">
                                                 {course.tutorials.length > 0 ? (
                                                     <ol>
@@ -74,8 +74,8 @@ export default function Course() {
                                             <td className="px-6 py-4">{course.description}</td>
                                             <td className="px-6 py-4">{course.category.title}</td>
                                             <td className="px-6 py-4">
-                                                <Link className='font-medium text-cyan-500 dark:text-blue-500 hover:underline mr-2' to={`/admin/courses/${course.id_course}/edit`}>Modifier</Link>
-                                                <button className='font-medium text-red-500 dark:text-red-500 hover:underline' onClick={() => handleDeleteCourse(course.id_course)}>Supprimer</button>
+                                                <Link className='font-medium text-cyan-500 hover:underline mr-2' to={`/admin/courses/${course.id_course}/edit`}>Modifier</Link>
+                                                <button className='font-medium text-red-500 hover:underline' onClick={() => handleDeleteCourse(course.id_course)}>Supprimer</button>
                                             </td>
                                         </tr>
                                     ))}

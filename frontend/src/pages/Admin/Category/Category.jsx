@@ -42,8 +42,8 @@ export default function Categorie() {
                         </div>
 
                         <div className="relative overflow-x-auto mt-10">
-                            <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-                                <thead className='text-xs text-gray-700 uppercase bg-white dark:bg-gray-700 dark:text-gray-400'>
+                            <table className='w-full text-sm text-left rtl:text-right text-gray-500'>
+                                <thead className='text-xs text-gray-700 uppercase bg-white'>
                                     <tr>
                                         <th scope="col" className="px-6 py-3">Titre</th>
                                         <th scope="col" className="px-6 py-3">Description</th>
@@ -52,12 +52,12 @@ export default function Categorie() {
                                 </thead>
                                 <tbody>
                                     {categorys.map(category => (
-                                        <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' key={category.id_category}>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{category.title}</th>
+                                        <tr className='bg-white border-b hover:bg-gray-50' key={category.id_category}>
+                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.title}</th>
                                             <td className="px-6 py-4">{category.description}</td>
                                             <td className="px-6 py-4">
-                                                <Link className='font-medium text-cyan-500 dark:text-blue-500 hover:underline mr-2' to={`/admin/category/${category.id_category}/edit`}>Modifier</Link>
-                                                <button className='font-medium text-red-500 dark:text-red-500 hover:underline' onClick={() => handleDeleteCategory(category.id_category)}>Supprimer</button>
+                                                <Link className='font-medium text-cyan-500 hover:underline mr-2' to={`/admin/category/${category.id_category}/edit`}>Modifier</Link>
+                                                <button className='font-medium text-red-500 hover:underline' onClick={() => handleDeleteCategory(category.id_category)}>Supprimer</button>
                                             </td>
                                         </tr>
                                     ))}

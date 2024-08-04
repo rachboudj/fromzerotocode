@@ -44,8 +44,8 @@ export default function Tutorial() {
                         </div>
 
                         <div className="relative overflow-x-auto mt-10">
-                            <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-                                <thead className='text-xs border-b text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400'>
+                            <table className='w-full text-sm text-left rtl:text-right text-gray-500'>
+                                <thead className='text-xs border-b text-gray-700 uppercase'>
                                     <tr>
                                         <th scope="col" className="px-6 py-3">Titre</th>
                                         <th scope="col" className="px-6 py-3">Contenu</th>
@@ -55,13 +55,13 @@ export default function Tutorial() {
                                 </thead>
                                 <tbody>
                                     {tutorials.map(tutorial => (
-                                        <tr className='bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600' key={tutorial.id_courses}>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{tutorial.title}</th>
+                                        <tr className='bg-white' key={tutorial.id_courses}>
+                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{tutorial.title}</th>
                                             <td className="px-6 py-4">{tutorial.content}</td>
                                             <td className="px-6 py-4">{tutorial.course.title}</td>
                                             <td className="px-6 py-4">
-                                                <Link className='font-medium text-cyan-500 dark:text-blue-500 hover:underline mr-2' to={`/admin/tutorial/${tutorial.id_tutorial}/edit`}>Modifier</Link>
-                                                <button className='font-medium text-red-500 dark:text-red-500 hover:underline' onClick={() => handleDeleteCourse(tutorial.id_tutorial)}>Supprimer</button>
+                                                <Link className='font-medium text-cyan-500 hover:underline mr-2' to={`/admin/tutorial/${tutorial.id_tutorial}/edit`}>Modifier</Link>
+                                                <button className='font-medium text-red-500 hover:underline' onClick={() => handleDeleteCourse(tutorial.id_tutorial)}>Supprimer</button>
                                             </td>
                                         </tr>
                                     ))}

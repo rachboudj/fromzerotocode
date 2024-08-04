@@ -43,7 +43,7 @@ export default function Menu() {
         <nav className='border-b-2 border-black'>
             <div className='flex justify-between mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-16'>
                 <div className='flex items-center'>
-                    <img className="h-6 w-auto" src={logo} alt="Logo From Zero To Code" />
+                    <img className="h-8 w-auto" src={logo} alt="Logo From Zero To Code" />
                     <span className='font-extrabold ml-3 phone:hidden'>From Zero To Code</span>
                 </div>
 
