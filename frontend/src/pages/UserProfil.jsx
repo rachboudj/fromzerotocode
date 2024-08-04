@@ -64,11 +64,14 @@ export default function UserProfil() {
                             <div className='mt-5'>
                                 {inProgressCourses.map(course => (
                                     <div className='flex items-center justify-between border-2 border-black bg-white p-10' key={course.id_course}>
-                                    <h3>{course.course.title}</h3>
-                                    <button onClick={() => handleCourseClick(course.id_course)}>
-                                        <img className='w-5' src={arrow} alt="" />
-                                    </button>
-                                </div>
+                                        <div>
+                                            <h3>{course.course.title}</h3>
+                                            <span className='text-white bg-black p-2'>{progress} %</span>
+                                        </div>
+                                        <button onClick={() => handleCourseClick(course.id_course)}>
+                                            <img className='w-5' src={arrow} alt="" />
+                                        </button>
+                                    </div>
                                 ))}
                             </div>
                         ) : (
@@ -81,7 +84,11 @@ export default function UserProfil() {
                         <div className='mt-5'>
                             {finishedCourses.map(course => (
                                 <div className='flex items-center justify-between border-2 border-black bg-white p-10' key={course.id_course}>
-                                    <h3>{course.course.title}</h3>
+                                    <div>
+                                        <h3 className='mb-6'>{course.course.title}</h3>
+                                        <span className='text-white bg-black p-2'>{course.progress} %</span>
+
+                                    </div>
                                     <button onClick={() => handleCourseClick(course.id_course)}>
                                         <img className='w-5' src={arrow} alt="" />
                                     </button>
