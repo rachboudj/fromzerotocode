@@ -16,7 +16,7 @@ export default function Login() {
             const res = await api.post(`${import.meta.env.VITE_API_URL}/login`, { email, password })
             if (res.data.Status === "Success") {
                 localStorage.setItem("accessToken", res.data.accessToken);
-                navigate('/')
+                navigate('/les-tutos')
                 window.location.reload();
             } else {
                 toast.error(res.data.Message || "Erreur de connexion");
