@@ -49,7 +49,9 @@ export default function Menu() {
 
                 <div className='flex items-center w-2/4'>
                     <ul className='flex justify-evenly items-center w-4/4'>
-                        <li><a href="/" className="mr-8" role="menuitem">Accueil</a></li>
+                        {!isLoggedIn && (
+                            <li><a href="/" className="mr-8" role="menuitem">Accueil</a></li>
+                        )}
                         <li><a href="/a-propos" className="mr-8" role="menuitem">À propos</a></li>
                         <li><a href="/les-tutos" className="mr-8" role="menuitem">Les tutos</a></li>
                     </ul>
@@ -70,9 +72,9 @@ export default function Menu() {
                                             <span className="block mt-4 uppercase px-4 py-2 font-medium text-xs text-gray-700 hover:bg-gray-100 hover:text-gray-900">Administrateur</span>
                                             {userRole.includes('SuperAdmin') && (
                                                 <>
-                                            <a href="/admin/user" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Utilisateurs</a>
-                                            <a href="/admin/roles" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Rôles</a>
-                                            </>
+                                                    <a href="/admin/user" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Utilisateurs</a>
+                                                    <a href="/admin/roles" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Rôles</a>
+                                                </>
                                             )}
                                             <a href="/admin/category" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Catégorie</a>
                                             <a href="/admin/courses" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Cours</a>
