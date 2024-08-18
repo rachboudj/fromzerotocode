@@ -111,6 +111,6 @@ export const deleteTutorial = async (req, res) => {
         })
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Une erreur est survenue lors de la suppression de la catégorie' });
+        res.status(500).json({ error: 'Une erreur est survenue lors de la suppression du tutoriel' });
     }
 }

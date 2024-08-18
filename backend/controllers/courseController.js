@@ -256,14 +256,21 @@ export const finishCourse = async (req, res) => {
 
 export const deleteCourse = async (req, res) => {
     const courseId = parseInt(req.params.id);
-
     try {
+        await prisma.tutorial.deleteMany({
+            where: { id_course: courseId }
+        });
+
+        await prisma.userCourse.deleteMany({
+            where: { id_course: courseId }
+        });
+
         const deleteCourse = await prisma.course.delete({
             where: {id_course : courseId}
         })
         res.status(200).json(deleteCourse);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Une erreur est survenue lors de la suppression de la catégorie' });
+        res.status(500).json({ error: 'Une erreur est survenue lors de la suppression du cours' });
     }
 }
